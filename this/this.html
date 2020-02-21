@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="input">
+        <button type="button" id="btn">Click</button>
+    </div>
+    <div>
+        <button type="button" id="asyncBtn">비동기</button>
+    </div>
+    <div>
+        <button type="button" id="asyncBtn2">비동기2</button>
+    </div>
+    <div>
+        <button type="button" id="asyncBtn3">비동기3</button>
+    </div>
+    <div>
+        <button type="button" id="asyncBtn4">비동기4</button>
+    </div>  
+<script type="text/javascript"> 
+var global = "test";
+
+window.onload = function(){
+    console.log(this);
+
+    var input = document.getElementById("input");
+    var button = document.getElementById("btn");
+    var asyncBtn = document.getElementById("asyncBtn");
+
+
+    input.addEventListener('change', inputHandler);
+
+    button.addEventListener('click', buttonHandler);
+
+    asyncBtn.addEventListener('click', asyncBtnTest.asyncCall);
+
+    asyncBtn2.addEventListener('click', asyncBtnTest2.asyncCall);
+
+    asyncBtn3.addEventListener('click', asyncBtnTest3);
+
+    asyncBtn4.addEventListener('click', asyncBtnTest4.asyncCall);
+};
+
+function inputHandler(){
+    console.log(this);
+    console.log(this.value);
+}
+
+function buttonHandler(){
+    console.log(this);
+    alert(input.value);
+}
+
+var asyncBtnTest = {
+    global : "test2",
+    asyncCall : function (){
+        setTimeout(function(){
+            console.log(this);
+            alert(this.global);
+        }, 300);
+    }
+}
+
+var asyncBtnTest2 = {
+    global : "test2",
+    asyncCall : function(){
+        var _self = window.asyncBtnTest2;
+        setTimeout(function(){
+            //여기서의 this는 asyncBtnTest2.asyncCall() 메서드를 호출한
+            //asyncBtn 엘리먼트이다.
+            console.log(this.global);
+            console.log(_self.global);
+            alert(_self.global);
+        }, 300);
+    }
+}
+
+function asyncBtnTest3(){
+    var global = "test3";
+    console.log(this);
+    window.setTimeout(function(){
+        console.log(this);
+        alert(this.global);
+    }, 300)
+}
+
+var asyncBtnTest4 = {
+    global : "test4",
+    asyncCall : function(){
+        var _self = this;
+        function call(){
+            console.log(_self);
+            window.setTimeout(function(){
+                console.log(this);
+                console.log(_self);
+                alert(_self.global);
+            }, 300);
+        }
+        call();
+    }
+}
+
+</script>
+</body>
+</html>
