@@ -8,11 +8,22 @@
 <body>
     <div>
         <input type="text" id="textInput">
+        <button type="button" id="inputBtn"></button>
     </div>
 <script type="text/javascript">
+
+var inputBtn = document.getElementById("inputBtn");
+
 window.onload = function(){
-    alert(1);
+    inputBtn.addEventListener("click", clickBtn);
 };
+
+function clickBtn(){
+    var _self = this;
+};
+
+
+
 </script>
 </body>
 </html>
