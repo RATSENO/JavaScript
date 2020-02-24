@@ -375,7 +375,7 @@ delete y; // 프로퍼티는 삭제된다.
 
 console.log(window.x); // 10
 console.log(window.y); // undefined
-<code>
+</code>
 </pre>
   
 # 최소한의 전역변수 사용  
@@ -413,4 +413,3 @@ console.log(MYAPP.student.name);
 console.log(MYAPP.student.name);
 </code>
 </pre>
-
