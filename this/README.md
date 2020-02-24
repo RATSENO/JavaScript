@@ -167,3 +167,11 @@ obj2.sayName();
 Kim  
 
 <img src="img/this8.png" width="600px" height="400px" title="" alt=""></img><br/>  
+
+
+# 간단 정리  
+## 전역 공간 >>>>> window / global  
+## 함수 내부 >>>>> window / global  
+## 메소드 호출 시 >>>> 메소드 호출 주체(메소드명 앞)  
+## callback에서 >>>> 기본적으로는 함수내부에서와 동일  
+## 생성자함수에서 >>>> 인스턴스
